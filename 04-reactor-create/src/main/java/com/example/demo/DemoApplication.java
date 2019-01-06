@@ -40,7 +40,9 @@ public class DemoApplication implements CommandLineRunner {
 
         //test04();
 
-        test05();
+        //test05();
+
+        test06();
 
     }
 
@@ -186,6 +188,37 @@ public class DemoApplication implements CommandLineRunner {
         bridge.subscribe(System.out::println);
 
         myEventProcessor.dataChunk("abc", "def");
+
+    }
+
+    private void test06(){
+
+        /*
+        https://www.infoq.com/articles/reactor-by-example
+
+        SomeFeed<PriceTick> feed = new SomeFeed<>();
+        Flux<PriceTick> flux =
+                Flux.create(emitter ->
+                {
+                    SomeListener listener = new SomeListener() {
+                        @Override
+                        public void priceTick(PriceTick event) {
+                            emitter.next(event);
+                            if (event.isLast()) {
+                                emitter.complete();
+                            }
+                        }
+
+                        @Override
+                        public void error(Throwable e) {
+                            emitter.error(e);
+                        }};
+                    feed.register(listener);
+                }, FluxSink.OverflowStrategy.BUFFER);
+
+        ConnectableFlux<PriceTick> hot = flux.publish();
+
+        */
 
     }
 

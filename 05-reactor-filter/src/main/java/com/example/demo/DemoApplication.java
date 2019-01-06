@@ -21,7 +21,10 @@ public class DemoApplication implements CommandLineRunner {
         //test02();
         //test03();
         //test04();
-        test05();
+        //test05();
+        //test06();
+        //test07();
+        test08();
     }
 
     private void test01(){
@@ -61,6 +64,28 @@ public class DemoApplication implements CommandLineRunner {
                 .subscribe(System.out::println);
 
     }
+
+    private void test06(){
+
+        Flux<String> names = Flux.just("kim", "lee");
+        //names.map(name -> name.toUpperCase()).subscribe(System.out::println);
+        names.map(String::toUpperCase).subscribe(System.out::println);
+    }
+
+    private void test07(){
+
+        Flux<Integer> integerFlux = Flux.just(1, 2, 3);
+        integerFlux.flatMap(i -> Flux.range(0, i)).subscribe(System.out::println);
+    }
+
+    private void test08(){
+        Flux<String> flux = Flux.just("I like you","I hate you");
+        flux.flatMap(s -> Flux.fromArray(s.split(" ")))
+                .subscribe(System.out::println);
+    }
+
     
+
+
 }
 
