@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,6 +68,30 @@ public class DemoApplication implements CommandLineRunner {
             }
         });
 
+    }
+
+    private void test05(){
+    
+        //https://www.baeldung.com/reactor-core
+        Flux.just(1, 2, 3, 4)
+                .log()
+                .subscribe(new Subscriber<Integer>() {
+                    @Override
+                    public void onSubscribe(Subscription s) {
+                        s.request(Long.MAX_VALUE);
+                    }
+
+                    @Override
+                    public void onNext(Integer integer) {
+                        //elements.add(integer);
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {}
+
+                    @Override
+                    public void onComplete() {}
+                });
     }
 }
 
